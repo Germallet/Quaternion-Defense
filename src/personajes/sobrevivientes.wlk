@@ -37,6 +37,8 @@ class Sobreviviente inherits Personaje
 	var objetoDeInteraccion = null
 		
 	/******************** Combate ********************/	
+	method multiplicadorDeDanio() = 50
+	
 	// Suma de defensa del sobreviviente y la defensa de todos sus equipos
 	override method defensa() = (defensa + defensaPorNivel * nivel) + arma.defensa() + equipoDeMano.defensa() + casco.defensa() + pechera.defensa() + pantalones.defensa() + botas.defensa() 
 	
@@ -220,10 +222,8 @@ class Sobreviviente inherits Personaje
 	method tieneHabilidad(habilidad) = habilidadesActivas.contains(habilidad) or habilidadesPasivas.contains(habilidad)
 	
 	// Morir
-	override method morir(asesino)
-	{
-		super(asesino)
-		
+	override method efectoAlMorir(asesino)
+	{	
 		self.desequiparTodo()
 		escenario.removerSobreviviente(self)
 	}

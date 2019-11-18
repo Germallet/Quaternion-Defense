@@ -7,6 +7,7 @@ import estadosTemporales.*
 import direcciones.*
 import escenario.*
 import eventos.*
+import objetosEnJuego.imagenEnlazada.*
 
 class Personaje inherits ObjetoConVida
 {
@@ -192,6 +193,12 @@ class Personaje inherits ObjetoConVida
 		{
 			if(probabilidad.en100De(probabilidadDeBloqueo)) // Si bloquea
 			{
+				const bloqueo = new AnimacionEnlazada(0.2, 2, self, "assets/Bloqueo/Esquivo")
+				const tiempo = new EventoSimple(eventos02Segundos, 0.4, { bloqueo.interrumpir() })
+				
+				bloqueo.comenzar()
+				tiempo.comenzar()
+				
 				self.sufrirDanio(danio * 0.5, agresor) // Sufre daño reducidoa la mitad por bloqueo
 			}
 			else
@@ -199,7 +206,11 @@ class Personaje inherits ObjetoConVida
 		}
 		else
 		{
-			game.say(self, "Too slow!") // Esquivo
+			const esquivo = new AnimacionEnlazada(0.2, 2, self, "assets/Efectos/Esquivo")
+			const tiempo = new EventoSimple(eventos02Segundos, 0.6, { esquivo.interrumpir() })
+			
+			esquivo.comenzar()
+			tiempo.comenzar()
 		}
 	}
 	
@@ -355,7 +366,7 @@ object ataqueHabilitado
 		// Ecuaciones para el calculo del daño
 		const poderDeAtaque = (arma.ataque() + atacante.ataque()) * atacante.multiplicadorDeAtaque()
 		
-		const danioNormal = poderDeAtaque * 50 / (objetivo.defensa() + 100) 
+		const danioNormal = poderDeAtaque * atacante.multiplicadorDeDanio() / (objetivo.defensa() + 100) 
 		const danioPerforante = arma.ataquePerforante() + atacante.ataquePerforante()
 		const danioDeAtaque = (danioNormal + danioPerforante + objetivo.constanteDeDanioRecibido()) * atacante.multiplicadorDeCritico() * objetivo.multiplicadorDeDanioRecibido()
 		
@@ -452,7 +463,7 @@ object parado
 	
 	method revivir(personaje, porcentaje) {}
 	
-	method morir(personaje) {}
+	method morir(personaje, asesino) {}
 	
 	method efectoAlMover(personaje) {}
 	
@@ -475,7 +486,7 @@ object interactuando
 	
 	method revivir(personaje, porcentaje) {}
 	
-	method morir(personaje) {}
+	method morir(personaje, asesino) {}
 	
 	method efectoAlMover(personaje)
 	{
@@ -517,7 +528,7 @@ object derribado
 	method revivir(personaje, porcentaje)
 	{
 		personaje.cambiarEstado(parado)
-		personaje.curar(personaje.porcentajeVidaMaxima(porcentaje))
+		personaje.curar(personaje.porcentajeDeVidaMaxima(porcentaje))
 	}
 	
 	method morir(personaje, asesino) 

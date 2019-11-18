@@ -156,12 +156,12 @@ describe "Combate entre Personajes"
 	{
 		//Ecuacion de daño simplificada para este caso (Atk*50) / (Def+100)
 		betty.inicializar() // Vida: 127 Def: 21.8
-		agresor.atacarA(betty) // Atk: 26 + 1.5 + 3 = 30.5
+		agresor.atacarA(betty) // Atk: 26 + 1.5 + 3 = 30.5 MultiplicadorDeDaño de Enemigo = 25
 		
-		//Daño esperado = (30.5*50) / (21.8+100) = 12.5
-		//Vida esperada = 127 - 12.5 = 114.5 redondeado al superior 115 
+		//Daño esperado = (30.5*25) / (21.8+100) = 6.2
+		//Vida esperada = 127 - 6.2 = 120.8 redondeado al superior 121 
 		
-		assert.equals(115, betty.vidaActual())
+		assert.equals(121, betty.vidaActual())
 	}
 	test "La constante de daño recibido modifica el daño recibido en ese valor" 
 	{
@@ -169,18 +169,18 @@ describe "Combate entre Personajes"
 		betty.modificarConstanteDeDanioRecibido(5)
 		agresor.atacarA(betty) 
 		
-		//Vida esperada = 115 - 5 = 110
+		//Vida esperada = 121 - 5 = 116
 		
-		assert.equals(110, betty.vidaActual())
+		assert.equals(116, betty.vidaActual())
 	}
 	test "el multiplicador de daño recibido modifica el daño recibido en ese porcentaje" 
 	{
 		betty.inicializar()
-		betty.modificarMultiplicadorDeDanioRecibido(10) // +10%
+		betty.modificarMultiplicadorDeDanioRecibido(50) // +50%
 		agresor.atacarA(betty) 
 		
-		//Vida esperada = 127 - (12.5 + 10%) = 127 - 13.7 = 113.3 redondeado al superior 114
+		//Vida esperada = 127 - (6.2 + 50%) = 127 - 9.1 = 117.9 redondeado al superior 118
 		
-		assert.equals(114, betty.vidaActual())
+		assert.equals(118, betty.vidaActual())
 	}
 }

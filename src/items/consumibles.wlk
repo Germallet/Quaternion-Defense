@@ -15,8 +15,7 @@ class Consumible inherits ItemAcumulableLimitado
 		self.efecto(consumidor)
 		cantidad--
 		
-		if(cantidad == 0)
-			self.removerDeInventarioSiSeTermino()
+		self.removerDeInventarioSiSeTermino()
 	}
 	
 	override method quitar(cantidadAQuitar)
@@ -25,11 +24,7 @@ class Consumible inherits ItemAcumulableLimitado
 		self.removerDeInventarioSiSeTermino()
 	}
 	
-	method removerDeInventarioSiSeTermino()
-	{
-		if(cantidad == 0)
-			inventarioGeneral.removerItem(self)
-	}
+	method removerDeInventarioSiSeTermino() { if(cantidad == 0) inventarioGeneral.removerItem(self) }
 	
 	method efecto(consumidor)
 	

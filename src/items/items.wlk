@@ -57,7 +57,7 @@ class ItemAcumulable inherits Item
 	
 	method quitar(cantidadAQuitar)
 	{
-		cantidad = cantidad - cantidadAQuitar
+		cantidad = 0.max(cantidad - cantidadAQuitar)
 	}
 	
 	method cantidad() = cantidad

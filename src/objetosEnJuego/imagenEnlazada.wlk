@@ -27,7 +27,6 @@ class ImagenEnlazada inherits ObjetoEnJuego
 	override method escarchar(gravedad) { objetoEnlazado.escarchar(gravedad) }
 	override method congelar(gravedad) { objetoEnlazado.congelar(gravedad) }
 	override method cegar(gravedad) { objetoEnlazado.cegar(gravedad) }
-	override method revivir(porcentajeDeVida) { objetoEnlazado.revivir(porcentajeDeVida) }  
 	override method sufrirDanio(danio, agresor) { objetoEnlazado.sufrirDanio(danio, agresor) }
 	override method recibirAtaqueDeHabilidad(danio, agresor) { objetoEnlazado.recibirAtaqueDeHabilidad(danio, agresor) }
 	

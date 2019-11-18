@@ -17,7 +17,6 @@ class ObjetoEnJuego
 	method escarchar(gravedad) {}
 	method congelar(gravedad) {}
 	method cegar(gravedad) {}
-	method revivir(porcentajeDeVida) {}
 	method sufrirDanio(danio, agresor) {}
 	method recibirAtaqueDeHabilidad(danio, agresor) {}
 	
