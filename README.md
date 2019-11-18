@@ -4,8 +4,8 @@
 
 ### Desarrolladores
 
-Cabral Sebastián
-Mallet Germán
-López Alva Diana
+- Cabral Sebastián
+- Mallet Germán
+- López Alva Diana
 
 Todos somos estudiantes de Paradigmas de Programación en la UTN.
