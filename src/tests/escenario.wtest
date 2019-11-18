@@ -1,0 +1,89 @@
+import escenario.*
+import personajes.sobrevivientes.*
+
+describe "Agregar un Sobreviviente"
+{
+	test "Cuando se agrega un sobreviviente se añade a la lista de sobrevivientes" 
+	{
+		escenario.agregarSobreviviente(betty)	
+		assert.equals(betty, escenario.sobrevivientes().uniqueElement())
+	}
+}
+
+describe "Agregar y remover Sobrevivientes"
+{
+	fixture
+	{
+		escenario.agregarSobreviviente(karl)
+		escenario.agregarSobreviviente(betty)
+		escenario.agregarSobreviviente(jan)
+	}
+	
+	test "El primer sobreviviente que se agregar es el seleccionado por default" 
+	{
+		assert.that(escenario.esSobrevivienteSeleccionado(karl))
+	}
+	
+	test "Alternar Sobreviviente cambia el sobreviviente seleccionado al siguiente en la lista" 
+	{
+		escenario.alternarSobreviviente()		
+		assert.that(escenario.esSobrevivienteSeleccionado(betty))
+	}
+	
+	test "Alternar Sobreviviente cambia el sobreviviente seleccionado al primero en la lista si el seleccionado era el ultimo" 
+	{
+		escenario.alternarSobreviviente()
+		escenario.alternarSobreviviente()
+		escenario.alternarSobreviviente()
+		
+		assert.that(escenario.esSobrevivienteSeleccionado(karl))
+	}	
+	
+	test "Cuando se remueve un sobreviviente se remueve de la lista de sobrevivientes" 
+	{
+		escenario.removerSobreviviente(jan)
+		
+		assert.equals([karl, betty], escenario.sobrevivientes())
+	}
+	
+	test "Cuando se remueve el sobreviviente seleccionado, el sobreviviente se alterna" 
+	{
+		escenario.alternarSobreviviente()
+		
+		escenario.removerSobreviviente(betty)
+		
+		assert.that(escenario.esSobrevivienteSeleccionado(jan))
+	}
+	
+	test "Esta antes que el sobreviviente seleccionado" 
+	{
+		escenario.alternarSobreviviente()
+		
+		assert.that(escenario.estaAntesQueElSobrevivienteSeleccionado(karl))
+	}
+	
+	test "No esta antes que el sobreviviente seleccionado" 
+	{
+		escenario.alternarSobreviviente()
+		
+		assert.notThat(escenario.estaAntesQueElSobrevivienteSeleccionado(jan))
+	}
+	
+	test "Cuando se remueve un sobreviviente no seleccionado que esta antes en la lista que el seleccionado, el sobreviviente seleccionado ssigue siendo el mismo" 
+	{
+		escenario.alternarSobreviviente()
+		
+		escenario.removerSobreviviente(karl)
+		
+		assert.that(escenario.esSobrevivienteSeleccionado(betty))
+	}
+	
+	test "Cuando se remueve un sobreviviente no seleccionado que esta despues en la lista que el seleccionado, el sobreviviente seleccionado ssigue siendo el mismo" 
+	{
+		escenario.alternarSobreviviente()
+		
+		escenario.removerSobreviviente(jan)
+		
+		assert.that(escenario.esSobrevivienteSeleccionado(betty))
+	}
+}

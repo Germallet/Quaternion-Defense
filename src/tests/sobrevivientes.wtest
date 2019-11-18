@@ -1,0 +1,40 @@
+import personajes.sobrevivientes.*
+import items.equipos.*
+
+describe "Inventario de Sobreviviente"
+{
+	var arma = new EspadaDeEntrenamiento()
+	
+	var cascoTest = new CascoTest()
+	var pecheraTest = new PecheraTest()
+	var pantalonesTest = new PantalonesTest()
+	var botasTest = new BotasTest()
+	
+	test "Los equipos de mano se equipan en la mano derecha de los sobrevivientes por default" 
+	{
+		arma.equiparEn(betty)
+		
+		assert.equals(arma, betty.arma())
+	}
+	
+	test "Al desequipar el arma el sobreviviente queda con sus manos como arma" 
+	{
+		arma.equiparEn(betty)
+		betty.arma().desequipar()
+		
+		assert.that(new Manos().esMismoItem(betty.arma()))
+	}
+	
+	test "La defensa de un sobreviviente es su defensa base + su defensa por nivel * su nivel + la defensa de sus armaduras" 
+	{
+		cascoTest.equiparEn(betty)
+		pecheraTest.equiparEn(betty)
+		pantalonesTest.equiparEn(betty)
+		botasTest.equiparEn(betty)
+		
+		var defensaEsperada = betty.defensaBase()+betty.defensaPorNivel()*betty.nivel()+cascoTest.defensa()+pecheraTest.defensa()+pantalonesTest.defensa()+botasTest.defensa()
+		
+		assert.equals(defensaEsperada, betty.defensa())
+	}
+
+}
