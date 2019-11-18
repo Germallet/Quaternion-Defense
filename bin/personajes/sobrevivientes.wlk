@@ -81,14 +81,17 @@ class Sobreviviente inherits Personaje
 	
 	method ganarExperiencia(experienciaGanada)
 	{
-		const experienciaParaPasarDeNivel = self.experienciaParaPasarDeNivel()
-		
-		if(experienciaActual + experienciaGanada <= experienciaParaPasarDeNivel)
-			experienciaActual = experienciaActual + experienciaGanada
-		else
+		if(nivel <5)
 		{
-			self.subirDeNivel()
-			self.ganarExperiencia(experienciaActual + experienciaGanada - experienciaParaPasarDeNivel)
+			const experienciaParaPasarDeNivel = self.experienciaParaPasarDeNivel()
+			
+			if(experienciaActual + experienciaGanada <= experienciaParaPasarDeNivel)
+				experienciaActual = experienciaActual + experienciaGanada
+			else
+			{
+				self.subirDeNivel()
+				self.ganarExperiencia(experienciaActual + experienciaGanada - experienciaParaPasarDeNivel)
+			}
 		}
 	}
 	
