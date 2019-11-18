@@ -6,6 +6,6 @@
 
 Cabral Sebastián
 Mallet Germán
-Con la ayuda de López Alva Diana
+López Alva Diana
 
 Todos somos estudiantes de Paradigmas de Programación en la UTN.
