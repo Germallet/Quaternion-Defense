@@ -429,7 +429,7 @@ class Revivir inherits HabilidadActiva
 	override method activar()
 	{
 		// Solo puede activarse si hay sobrevivientes derribados
-		if(not escenario.sobrevivientes().filter{ sobreviviente => sobreviviente.esstado() == derribado }.isEmpty())
+		if(not escenario.sobrevivientes().filter{ sobreviviente => sobreviviente.estado() == derribado }.isEmpty())
 			super()
 		else
 			sonido.reproducir("Habilidad_En_Enfriamiento.wav")
@@ -453,7 +453,7 @@ class ResurreccionIndividual
 	
 	method efectoDeActivacion(usuario, nivelHabilidad)
 	{
-		escenario.sobrevivientes().filter{ sobreviviente => sobreviviente.esstado() == derribado }.anyOne().revivir(self.porcentajeDeVidaAlRevivir(usuario, nivelHabilidad))
+		escenario.sobrevivientes().filter{ sobreviviente => sobreviviente.estado() == derribado }.anyOne().revivir(self.porcentajeDeVidaAlRevivir(usuario, nivelHabilidad))
 	}
 
 	method image() = "assets/Habilidades/Revivir.png"
