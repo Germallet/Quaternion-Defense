@@ -70,7 +70,7 @@ class FlechaSimple inherits Proyectil
 {	
 	method nombre() = "Flecha_Simple"
 	override method efecto(_objetivo, _tirador) {}
-	override method image() = "assets/Proyeciles/" + self.nombre() + "/" + direccion.toString() + ".png"
+	override method image() = "assets/Proyectiles/" + self.nombre() + "/" + direccion.toString() + ".png"
 }
 
 class FlechaIgnea inherits FlechaSimple

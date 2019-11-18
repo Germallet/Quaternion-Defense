@@ -55,7 +55,7 @@ class Personaje inherits ObjetoConVida
 	var property comportamientoDeMovimiento = normal
 	var comportamientoDeAtaque = ataqueHabilitado
 	var comportamientoDeHabilidades = habilidadesHabilitadas
-	var estado = parado
+	var property estado = parado
 	var estadoDeEventos = eventosInactivos
 	
 	/******************** Estadisticas ********************/

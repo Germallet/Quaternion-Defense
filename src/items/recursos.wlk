@@ -7,7 +7,7 @@ class Recurso inherits ItemAcumulable
 	override method direccion() = super() + "Recursos/" + self.nombre()
 }
 
-object madera inherits Recurso (cantidad = 50)
+object madera inherits Recurso (cantidad = 0)
 {
 	override method nombre() = "Madera"
 }
@@ -21,7 +21,7 @@ object hierro inherits Recurso (cantidad = 0)
 }
 object oro inherits Recurso (cantidad = 0)
 {
-	override method nombre() = "0"
+	override method nombre() = "Oro"
 }
 
 class RecursoNecesario
