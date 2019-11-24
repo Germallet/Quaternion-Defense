@@ -24,26 +24,26 @@ Experiencia Para Pasar de Nivel
 
 ## Sobrevivientes
 
-Jan
+### Jan
   Vida: Medio
   Ataque: Alto
   Defensa: Alto
   Habilidad: Al estar equipado con sus manos duplica su ataque y gana daño perforante (5 +   1 * asesinato).
 
-Karl
+### Karl
   Vida: Muy Bajo
   Ataque: Medio
   Defensa: Medio
   Habilidad: Posee un escudo igual a su vida máxima que se regenera cada 5 segundos.
 
 
-Betty
+### Betty
   Vida: Alto
   Ataque: Bajo
   Defensa: Bajo
   Habilidad: Cada 3er ataque cura 5% de vida máxima.
 
-Moldor
+### Moldor
   Vida: Medio
   Ataque: Muy Bajo
   Defensa: Muy Alto
@@ -52,28 +52,28 @@ Moldor
 
 ## Enemigos
 
-Zombie Tipo 1
+### Zombie Tipo 1
   Vida: Medio
   Ataque: Bajo
   Defensa: Bajo
   Habilidad: Pueden(20%) infligir Sangrado(1) con sus ataques.
   Experiencia Que Da: 1
 
-Zombie Tipo 2
+### Zombie Tipo 2
   Vida: Bajo
   Ataque: Bajo
   Defensa: Bajo
   Habilidad: Puede(30%) revivir una vez.
   Experiencia Que Da: 1
 
-Zombie Gordo
+### Zombie Gordo
   Vida: Medio
   Ataque: Medio
   Defensa: Medio
   Habilidad: Puede infligir Ceguera(1) con sus ataques y al morir explota causando mucho daño y Ceguera(3) a los sobrevivientes en un rango de 4 casillas.
   Experiencia Que Da: 2
 
-Zombie Tanque
+### Zombie Tanque
   Vida: Alto
   Ataque: Alto
   Defensa: Alto
