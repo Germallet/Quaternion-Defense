@@ -5,12 +5,12 @@ describe "Hierba Verde"
 {
 	var hierbaVerde = new HierbaVerde(5)	
 	
-	test "La Hierba Verde cura 30 de vida a un sobreviviente" 
+	test "La Hierba Verde cura 15% de vida a un sobreviviente" 
 	{	
 		betty.sufrirDanio(50, betty)
 		hierbaVerde.consumir(betty)
 		
-		assert.equals(80, betty.vidaActual())
+		assert.equals(70, betty.vidaActual())
 	}
 	
 	test "La La cantidad de Hierba Verde se reduce en uno cada vez que se consume" 

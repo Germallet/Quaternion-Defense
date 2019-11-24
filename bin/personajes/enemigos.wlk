@@ -22,7 +22,7 @@ class Enemigo inherits Personaje
 	override method vidaMaxima() = vidaMaxima + 2 * escenario.nroHorda() + 10 * escenario.nivel()
 	
 	/******************** Combate ********************/
-	method multiplicadorDeDanio() = 10
+	method multiplicadorDeDanio() = 15
 	
 	// Verdadero si hay objetivo en el rango de ataque
 	method haySobrevivientesEnRango() = escenario.sobrevivientes().any{ sobreviviente => arma.estaEnRango(sobreviviente) and sobreviviente.esAtacable() }
@@ -101,7 +101,7 @@ class ZombieTipo1 inherits Enemigo
 {
 	constructor()
 	{
-		arma = [new GarraZombie(usuario = self), new GarraZombiePerforante(usuario = self)].anyOne()
+		arma = new GarraZombiePerforante(usuario = self)
 		ataque = 26
 		defensa = 36
 		

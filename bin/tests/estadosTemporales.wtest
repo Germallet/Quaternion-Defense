@@ -70,7 +70,7 @@ describe "Comportamiendo de Sangrado"
 	}
 	test "Cuando se aplica sangrado sobre un personaje, aumenta el daño rebido en la gravedad" 
 	{
-		assert.equals(3, betty.constanteDeDanioRecibido())
+		assert.equals(2, betty.constanteDeDanioRecibido()) //-1 defaul por calzoncillos
 	}
 	test "Cuando se aplica sangrado sobre un personaje, el estado del sangrado es tieneEstadoAlterado" 
 	{
@@ -81,7 +81,7 @@ describe "Comportamiendo de Sangrado"
 		sangrado.terminar()
 		
 		assert.equals(noTieneEstadoAlterado, betty.estadoDeSangrado())
-		assert.equals(0, betty.constanteDeDanioRecibido())
+		assert.equals(-1, betty.constanteDeDanioRecibido()) //-1 defaul por calzoncillos
 	}
 	test "Cuando un personaje con sangrado, cura el sangrado, el sangrado se temina" 
 	{
@@ -117,7 +117,7 @@ describe "Comportamiendo de Escarchado"
 	}
 	test "Cuando se aplica escarcha sobre un personaje, se reduce su ataque en 5 * gravedad" 
 	{
-		assert.equals(4.4, betty.ataque()) // 19.4 Ataque base
+		assert.equals(9.4, betty.ataque()) // 19.4 Ataque base + 5 de manos
 	}
 	test "Cuando se aplica escarcha sobre un personaje, se reduce su probabilidad de evasion en 10% * gravedad" 
 	{
@@ -136,7 +136,7 @@ describe "Comportamiendo de Escarchado"
 		escarcha.terminar()
 		
 		assert.equals(noTieneEstadoAlterado, betty.estadoDeEscarcha())
-		assert.equals(19.4, betty.ataque())
+		assert.equals(24.4, betty.ataque())
 		assert.equals(0, betty.probabilidadDeEvasion())
 		assert.equals(0, betty.probabilidadDeBloqueo())
 	}

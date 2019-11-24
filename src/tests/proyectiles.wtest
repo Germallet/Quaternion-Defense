@@ -41,9 +41,9 @@ describe "Proyectiles"
 		jan.inicializar() // Vida actual de Jan = a Vida maxima (116.8 -> 117)
 		
 		game.addVisual(flechaSimple)
-		flechaSimple.impactar() // Flecha Simple tiene 10 de daño y no tiene efecto
+		flechaSimple.impactar() // Flecha Simple tiene 10 de daño y no tiene efecto -1 de daño recibido por calzoncillos
 		
-		assert.equals(107, jan.vidaActual())
+		assert.equals(108, jan.vidaActual())
 	}
 }
 
