@@ -2,7 +2,7 @@
 
 ![capturaJuego](assets/capturaJuego.png)
 
-### Desarrolladores
+## Desarrolladores
 
 - Cabral Sebastián
 - Mallet Germán
@@ -22,7 +22,7 @@ Experiencia Para Pasar de Nivel
  Para nivel 4 = 16
 
 
-### Sobrevivientes
+## Sobrevivientes
 
 Jan
   Vida: Medio
@@ -50,7 +50,7 @@ Moldor
   Habilidad: Puede cambiar a un modo oscuro lo que intercambia ataque por defensa (incluyendo bonuses de equipos).
 
 
-### Enemigos
+## Enemigos
 
 Zombie Tipo 1
   Vida: Medio
@@ -81,28 +81,28 @@ Zombie Tanque
   Experiencia Que Da: 3
 
 
-### Estados Alterados
+## Estados Alterados
  Los estados alterados son un efecto temporal negativo que puede sufrir un persojanje.
  Todos tienen una duración propia y un nivel de gravedad que potenciará el efecto del estado.
  Los estados alterados tienen un efecto al aplicarse, que es cuando se inglige un nuevo estado alterado sobre un personaje que no sufria dicho estado,
  y otro efecto al reaplicarse, que sucede cuando se inglinge un nuevo estado alterado sobre un personaje que ya tenía un estado alterado del mismo tipo.
 
-Quemadura
+### Quemadura
  Duración: 5 seg.
  Al aplicar: Causa (gravedad)% de daño por segundo.
  Al reaplicar: Se reinicia la duracion y se establece como gravedad la mayor de entre la quemadura nueva y la anterior.
 
-Sangrado
+### Sangrado
  Duración: 3 seg.
  Al aplicar: Aumenta el daño recibido en (gravedad).
  Al reaplicar: Se reinicia la duracion y incrementa la gravedad del sangrado en el doble de la gravedad del nuevo sangrado.
 
-Sangrado
- Duración: 3 seg.
- Al aplicar: Aumenta el daño recibido en (gravedad).
- Al reaplicar: Se reinicia la duracion y incrementa la gravedad del sangrado en el doble de la gravedad del nuevo sangrado.
+### Ceguera
+ Duración: 6 seg.
+ Al aplicar: Driminiye la presicion en 10 * (gravedad).
+ Al reaplicar: Se reinicia la duracion y incrementa la gravedad de la ceguera en la gravedad de la nueva ceguera.
 
-Escarcha
+### Escarcha
  Duración: 3 seg.
  Al aplicar: 
 	Disminuye la probabilidad de bloqueo en (gravedad)%
@@ -112,17 +112,17 @@ Escarcha
  Al llegar a nivel 5 de gravedad se convierte en congelado(3).
  No puede aplicarse si el personaje esta congelado.
 
-Congelado
+### Congelado
  Duración: (gravedad) seg.
  Al aplicar: Inmoviliza totalmente e inhabilita ataques y habilidades.
  Al reaplicar: Incrementa la gravedad del congelado en la gravedad del nuevo congelado.
 
 
-### Items
+## Items
 
 ## Equipos
 
-# Armas
+### Armas
 
 Ángel Guardián:
   Ataque: 42
@@ -185,7 +185,7 @@ Manos:
   Efecto: -
 
 
-# Equipos de Mano
+### Equipos de Mano
 
 Escudo Redondo:
   Defensa: 25
@@ -204,7 +204,7 @@ Brazalete De Oro:
   Efecto: Vida máxima +15%
 
 
-# Cascos
+### Cascos
 
 Collar De Oro:
   Defensa: 12
@@ -232,7 +232,7 @@ Casco De Gladiador:
   Efecto: Aumenta el daño realizado en 25%
 
 
-# Pecheras
+### Pecheras
 
 Camisa Verde:
   Defensa: 10
@@ -270,7 +270,7 @@ Alas De Angel:
   Efecto: Cura 5% de la vida máxima cada 5 segundos
 
 
-# Pantalones
+### Pantalones
 
 Calzoncillos:
   Defensa: 5
@@ -288,7 +288,7 @@ Pantalones Cortos:
   Efecto: En 3er Ataque Recibido: Evasión +100%
 
 
-# Botas
+### Botas
 
 Botas de Cuero:
   Defensa: 24
@@ -301,7 +301,7 @@ Botas de Hierro:
   Efecto: -
 
 
-## Materiales
+### Materiales
 
 Diamante: Piedra preciosa útil para combinar.
 
@@ -317,7 +317,7 @@ Garra: Peligrosa Garra de zombie. Útil para combinar.
 
 Cuerda: Una Cuerda. Útil para combinar.
 
-## Recursos
+### Recursos
 
 Madera: recurso básico de construcción obtenible
 mediante la tala de árboles. Útil para construcciones,
@@ -336,7 +336,7 @@ en las minas de oro. Útil para construcciones,
 fabricación de armas y otros objetos.
 
 
-## Consumibles
+### Consumibles
 
 Hierba verde: una planta medicinal que puede encon_
 trarse en los arbustos silvestres, y en ocasiones
@@ -344,9 +344,9 @@ extraerse de los árboles. Aumenta en 15% la salud
 del personaje que lo utiliza (consumible).
 
 
-### Habilidades
+## Habilidades
 
-## Pasivas
+### Pasivas
 
 Valentía:
   Aumenta el ataque del personaje en 17/19/21/23/25 %.
@@ -435,7 +435,7 @@ Angel Interno:
 Demonio Interno:
  Aumenta el daño recibido e infligido en 7/14/21/28/35%.
 
-## Activas
+### Activas
 
 Regeneración:
   En la activación: Cura 3% de vida cada 2 seg al personaje
@@ -545,9 +545,9 @@ Cambio De Energias:
   Enfriamiento: 5/5/4/3/3 seg.
 
 
-#### Guía de Recetas
+## Guía de Recetas
 
-## Armas
+### Armas
 	Palo(10) + Madera(15) = Espada De Entrenamiento
 	Espada De Entrenamiento + Piedra(25) = Katana
 	Espada De Entrenamiento + Hierro(25) = Espada Corta
@@ -556,19 +556,19 @@ Cambio De Energias:
 	Espada Grande + Alas De Angel = Angel Guardian	
 	Palo(20) + Cuerda(5) = Arco
 		
-## Equipos de Mano
+### Equipos de Mano
 	Madera(30) + Piedra(30) = Escudo Redondo
 	Brazalete De Oro() + Diamante(10) = Anillo Lujoso
 	Oro(30) + Hierro(30) = Brazalete De Oro
 		
-## Cascos
+### Cascos
 	Oro(25) + Cuerda(3) = Collar De Oro
 	Garra(10) + Cuerda(3) = Collar Salvaje
 	Cuero(10) + Cuerda(3) = Casco De Cuero
 	Rubi(15) + Casco DeCuero = Casco De Paladin
 	Collar Salvaje + Casco De Cuero = Casco De Gladiador
 		
-## Pecheras
+### Pecheras
 	Cuero(10) + Hierba Verde(10)} = Camisa Verde
 	Cuero(10) + Rubi(10) = Camisa Azul
 	Cuero(10) + Camisa Verde = Armadura Ligera De Cuero
@@ -577,15 +577,15 @@ Cambio De Energias:
 	Camisa Azul + Hierro(35) = Armadura Pesada
 	Pluma(25) + Diamante(5) = Alas De Angel
   
-## Pantalones
+### Pantalones
 	Calzoncillos + Pluma(10) = Pantalones Cortos
 	Calzoncillos + Cuero(10) = Pantalones Largos
 		
-## Botas
+### Botas
 	Botas Viejas + Cuero(15) = Botas De Cuero
 	Botas Viejas + Hierro(25) = Botas De Hierro
 		
-## Estructuras
+### Estructuras
 	Escudo Redondo + Madera(50) = Muro De Madera
 	Escudo Redondo + Piedra(50) = Muro De Piedra
 	Arco + Piedra(50) = Torre De Piedra
