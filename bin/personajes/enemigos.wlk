@@ -22,7 +22,7 @@ class Enemigo inherits Personaje
 	override method vidaMaxima() = vidaMaxima + 2 * escenario.nroHorda() + 10 * escenario.nivel()
 	
 	/******************** Combate ********************/
-	method multiplicadorDeDanio() = 25
+	method multiplicadorDeDanio() = 10
 	
 	// Verdadero si hay objetivo en el rango de ataque
 	method haySobrevivientesEnRango() = escenario.sobrevivientes().any{ sobreviviente => arma.estaEnRango(sobreviviente) and sobreviviente.esAtacable() }
@@ -106,20 +106,18 @@ class ZombieTipo1 inherits Enemigo
 		defensa = 36
 		
 		vidaMaxima = 200
-		vidaActual = vidaMaxima
+		vidaActual = self.vidaMaxima()
 		
 		dropsPosibles = [new Garra(2), new Garra(3), new Cuero(2), new Cuero(3), new Pluma(2), new Pluma(3), new Cuerda(2), new Cuerda(3), new HierbaVerde(1), new BotasViejas()]
 	}
 	
 	override method nombre() = "Zombie1"
 	
-	override method experienciaQueDa() = 2
+	override method experienciaQueDa() = 1
 }
 
 class ZombieTipo2 inherits Enemigo
 {
-	var resurreccion
-
 	constructor()
 	{
 		arma = new GarraZombie(usuario = self)
@@ -127,20 +125,17 @@ class ZombieTipo2 inherits Enemigo
 		defensa = 28
 		
 		vidaMaxima = 120
-		vidaActual = vidaMaxima
+		vidaActual = self.vidaMaxima()
+		
+		if(probabilidad.en100De(30))
+			resurrecciones = [new ResurrecionZombie()] 
 		
 		dropsPosibles = [new Garra(2), new Garra(3), new Cuero(2), new Cuero(3), new Pluma(2), new Pluma(3), new Cuerda(2), new Cuerda(3), new HierbaVerde(1)]
-	
-		self.agregarHabilidadPasiva(new AutoRevivir(usuario = self))
 	}
-		
-	method agregarHabilidadPasiva(_resurreccion){ resurreccion = _resurreccion }
-	
-	method removerHabilidadPasiva(_resurreccion){ resurreccion = null }
 	
 	override method nombre() = "Zombie2"
 	
-	override method experienciaQueDa() = 2
+	override method experienciaQueDa() = 1
 }
 
 class ZombieGordo inherits Enemigo
@@ -152,7 +147,7 @@ class ZombieGordo inherits Enemigo
 		defensa = 60
 		
 		vidaMaxima = 300
-		vidaActual = vidaMaxima
+		vidaActual = self.vidaMaxima()
 		
 		dropsPosibles = [new Pluma(2), new Pluma(3), new Cuerda(2), new Cuerda(3), new Diamante(1)]
 	}
@@ -161,15 +156,12 @@ class ZombieGordo inherits Enemigo
 	
 	method explotar()
 	{
-		escenario.sobrevivientes().filter{ sobreviviente => position.distance(sobreviviente.position()) <= 4 }.forEach{ sobreviviente => sobreviviente.sufrirDanio(ataque, self) }
+		escenario.sobrevivientes().filter{ sobreviviente => position.distance(sobreviviente.position()) <= 4 }.forEach{ sobreviviente => sobreviviente.sufrirDanio(3*ataque, self) sobreviviente.cegar(3) }
 	}
 	
-	override method efectoAlMorir(asesino)
-	{
-		self.explotar()
-	}
+	override method efectoAlMorir(asesino) { self.explotar() }
 
-	override method experienciaQueDa() = 4
+	override method experienciaQueDa() = 2
 }
 
 class ZombieTanque inherits Enemigo
@@ -181,13 +173,13 @@ class ZombieTanque inherits Enemigo
 		defensa = 120
 		
 		vidaMaxima = 500
-		vidaActual = vidaMaxima
+		vidaActual = self.vidaMaxima()
 		
 		dropsPosibles = [new Cuero(3), new Cuero(4), new Garra(3), new Garra(4), new Diamante(1)]
 	}
 
 	override method nombre() = if(self.vidaActual()>self.porcentajeDeVidaMaxima(50)) "ZombieTanque" else "ZombieTanqueEnsangrentado"
 	
-	override method experienciaQueDa() = 6
+	override method experienciaQueDa() = 3
 }
 

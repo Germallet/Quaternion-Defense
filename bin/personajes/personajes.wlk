@@ -62,14 +62,11 @@ class Personaje inherits ObjetoConVida
 	/******************** Estadisticas ********************/
 	method nombre()
 	
-	method ataque() = ataque
+	method ataque() = ataque +  arma.ataque()
 	
-	method modificarAtaque(modificacion)
-	{
-		ataque = ataque + modificacion
-	}
+	method modificarAtaque(modificacion) { ataque = ataque + modificacion }
 	
-	method ataquePerforante() = ataquePerforante
+	method ataquePerforante() = ataquePerforante + arma.ataquePerforante()
 	
 	method multiplicadorDeAtaque() = multiplicadorDeAtaque/100
 	
@@ -193,7 +190,7 @@ class Personaje inherits ObjetoConVida
 		{
 			if(probabilidad.en100De(probabilidadDeBloqueo)) // Si bloquea
 			{
-				const bloqueo = new AnimacionEnlazada(0.2, 2, self, "assets/Bloqueo/Esquivo")
+				const bloqueo = new AnimacionEnlazada(0.2, 2, self, "assets/Bloqueo")
 				const tiempo = new EventoSimple(eventos02Segundos, 0.4, { bloqueo.interrumpir() })
 				
 				bloqueo.comenzar()
@@ -364,11 +361,9 @@ object ataqueHabilitado
 		const arma = atacante.arma()
 		
 		// Ecuaciones para el calculo del daño
-		const poderDeAtaque = (arma.ataque() + atacante.ataque()) * atacante.multiplicadorDeAtaque()
-		
+		const poderDeAtaque = atacante.ataque() * atacante.multiplicadorDeAtaque()
 		const danioNormal = poderDeAtaque * atacante.multiplicadorDeDanio() / (objetivo.defensa() + 100) 
-		const danioPerforante = arma.ataquePerforante() + atacante.ataquePerforante()
-		const danioDeAtaque = (danioNormal + danioPerforante + objetivo.constanteDeDanioRecibido()) * atacante.multiplicadorDeCritico() * objetivo.multiplicadorDeDanioRecibido()
+		const danioDeAtaque = (danioNormal + atacante.ataquePerforante() + objetivo.constanteDeDanioRecibido()) * atacante.multiplicadorDeCritico() * objetivo.multiplicadorDeDanioRecibido()
 		
 		// El objetivo Recibe el daño
 		objetivo.recibirAtaqueNormal(danioDeAtaque, atacante)

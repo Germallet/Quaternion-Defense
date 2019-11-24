@@ -43,7 +43,7 @@ object listaDeRecetas
 		new Receta(ingredientes = #{new EspadaDeEntrenamiento(), new HierroNecesario(25)}, generadorDeProducto = { new EspadaCorta() }),
 		new Receta(ingredientes = #{new Palo(10), new HierroNecesario(15)}, generadorDeProducto = { new EspadaRecta() }),
 		new Receta(ingredientes = #{new EspadaRecta(), new HierroNecesario(25)}, generadorDeProducto = { new EspadaGrande() }),
-		
+		new Receta(ingredientes = #{new EspadaGrande(), new AlasDeAngel()}, generadorDeProducto = { new AngelGuardian() }),
 		new Receta(ingredientes = #{new Palo(20), new Cuerda(5)}, generadorDeProducto = { new Arco() }),
 		
 		//Equipos De Mano
@@ -71,9 +71,9 @@ object listaDeRecetas
 		new Receta(ingredientes = #{new Calzoncillos(), new Pluma(10)}, generadorDeProducto = { new PantalonesCortos() }),
 		new Receta(ingredientes = #{new Calzoncillos(), new Cuero(10)}, generadorDeProducto = { new PantalonesLargos() }),
 		
-		//Pantalones
-		new Receta(ingredientes = #{new BotasViejas(), new Cuero(15)}, generadorDeProducto = { new PantalonesLargos() }),
-		new Receta(ingredientes = #{new BotasViejas(), new HierroNecesario(25)}, generadorDeProducto = { new PantalonesLargos() }),
+		//Botas
+		new Receta(ingredientes = #{new BotasViejas(), new Cuero(15)}, generadorDeProducto = { new BotasDeCuero() }),
+		new Receta(ingredientes = #{new BotasViejas(), new HierroNecesario(25)}, generadorDeProducto = { new BotasDeHierro() }),
 		
 		//Estructuras
 		new RecetaDeEstructura(ingredientes = #{new EscudoRedondo(), new MaderaNecesaria(50)}, generadorDeProducto = { new MuroDeMadera() } ),

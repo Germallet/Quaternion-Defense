@@ -44,7 +44,7 @@ class Quemadura inherits EstadoAlterado
 	 	agresor = _agresor
 			
 		animacion = new AnimacionEnlazada(0.1, 4, victima, "assets/EstadosAlterados/Quemadura/")
-		efecto = new EventoPeriodicoTemporal(eventos1Segundo, duracion, 1, { victima.sufrirDanio(gravedad, agresor) }, { self.terminar() })
+		efecto = new EventoPeriodicoTemporal(eventos1Segundo, duracion, 1, { victima.sufrirDanio(victima.porcentajeDeVidaMaxima(gravedad), agresor) }, { self.terminar() })
 	}
 	
 	method agresor() = agresor
@@ -79,12 +79,11 @@ class Quemadura inherits EstadoAlterado
 		
 		quemaduraDeMayorGravedad.aplicar()
 	}
-	
 }
 
 class Sangrado inherits EstadoAlterado
 {
-	const duracion = 10
+	const duracion = 6
 	
 	constructor(_victima, _gravedad)
 	{
@@ -134,7 +133,7 @@ class Sangrado inherits EstadoAlterado
 
 class Escarcha inherits EstadoAlterado
 {
-	const duracion = 6
+	const duracion = 3
 	
 	constructor(_victima, _gravedad)
 	{
@@ -149,15 +148,18 @@ class Escarcha inherits EstadoAlterado
 	
 	method comenzar()
 	{
-		victima.modificarProbabilidadDeBloqueo(-10*gravedad)
-		victima.modificarProbabilidadDeEvasion(-10*gravedad)
-		victima.modificarAtaque(-5*gravedad)
-		
-		victima.escarcha(self)
-		victima.estadoDeEscarcha(tieneEstadoAlterado)
-		
-		efecto.comenzar()
-		game.addVisual(animacion)
+		if(victima.congelado() == null)
+		{ 
+			victima.modificarProbabilidadDeBloqueo(-10*gravedad)
+			victima.modificarProbabilidadDeEvasion(-10*gravedad)
+			victima.modificarAtaque(-5*gravedad)
+			
+			victima.escarcha(self)
+			victima.estadoDeEscarcha(tieneEstadoAlterado)
+			
+			efecto.comenzar()
+			game.addVisual(animacion) 
+		}	
 	}
 	
 	method terminar()
@@ -195,7 +197,7 @@ class Escarcha inherits EstadoAlterado
 		{
 			self.terminar()
 			
-			const congelado = new Congelado(victima, 4)
+			const congelado = new Congelado(victima, 3)
 			congelado.aplicar()
 		}
 	}
@@ -250,8 +252,8 @@ class Congelado inherits EstadoAlterado
 	
 	override method aumentarGravedad(n) 
 	{
-		super(1)
-		efecto.modificarDemora(1)
+		super(n)
+		efecto.modificarDemora(n)
 	}
 }
 

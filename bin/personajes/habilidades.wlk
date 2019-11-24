@@ -10,6 +10,7 @@ import escenario.*
 import sonidos.*
 import eventos.*
 import personajes.personajes.*
+import personajes.sobrevivientes.*
 
 /******************** Habilidades ********************/
 class Habilidad
@@ -506,6 +507,7 @@ class FlechazoSimple inherits Flechazo
 {	
 	override method nombre() = "Flechazo_Simple"
 	override method flecha() = new FlechaSimple(usuario, self.danio())
+	override method coste() = 0
 }
 
 class FlechazoIgneo inherits Flechazo
@@ -606,6 +608,53 @@ class CocktailMolotov inherits HabilidadActiva
 	}
 }
 
+object oracion inherits HabilidadActiva(usuario = moldor)
+{	
+	method modo() = moldor.modo().oracion()
+	
+	override method tiempoDeEnfriamiento() = 30 - 2 * self.nivel()
+		
+	override method nombre() = self.modo().nombre()
+	
+	override method efectoDeActivacion() { self.modo().efectoDeActivacion() }
+	
+	override method coste() = 2
+}
+
+object bendicion
+{
+	method nombre() = "Bendicion"
+	
+	method efectoDeActivacion()
+	{
+		escenario.sobrevivientes().forEach{ sobreviviente =>  sobreviviente.curar(sobreviviente.porcentajeDeVidaMaxima(10 + moldor.nivel()*5)) }
+	}
+}
+object maldicion
+{
+	method nombre() = "Maldicion"
+	
+	method efectoDeActivacion()
+	{
+		escenario.enemigos().forEach{ enemigo =>  enemigo.recibirAtaqueDeHabilidad(enemigo.porcentajeDeVidaMaxima(20 + moldor.nivel()*10), moldor) }
+	}
+}
+
+object cambioDeEnergias inherits HabilidadActiva(usuario = moldor)
+{
+	override method tiempoDeEnfriamiento() = (7 - self.nivel()).limitBetween(3,5) // 5/5/4/3/3
+	
+	override method nombre() = moldor.modo().modoOpuesto().energia()
+	
+	override method efectoDeActivacion() 
+	{ 
+		moldor.curar(moldor.porcentajeDeVidaMaxima(5))
+		moldor.cambiarModo()
+	}
+	
+	override method coste() = 0
+}
+
 /******************** PASIVAS ********************/
 /******************** Clase Habilidad Pasiva ********************/
 class HabilidadPasiva inherits Habilidad
@@ -667,6 +716,19 @@ class AutoRevivir inherits HabilidadPasiva
 	override method efectoAlTerminarEnfriamiento()
 	{
 		usuario.agregarResurreccion(self)
+	}
+}
+
+class ResurrecionZombie inherits HabilidadPasiva
+{
+	method vidaTrasResurreccion() = usuario.porcentajeDeVidaMaxima(50)
+	
+	override method nombre() = "ResurrecionZombie"
+	
+	override method efectoDeActivacion() 
+	{ 
+		usuario.revivir(self.vidaTrasResurreccion())
+		usuario.removerResurreccion(self)
 	}
 }
 
@@ -871,16 +933,79 @@ class Despiadado inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.modificarProbabilidadDeCritico(estadistica.modificacionPorcentualTipo1())
+		usuario.modificarProbabilidadDeCritico(estadistica.modificacionPorcentualTipo2())
 		usuario.modificarMultiplicadorDeCritico(estadistica.modificacionDanioCritico())
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.modificarProbabilidadDeCritico(-estadistica.modificacionPorcentualTipo1())
+		usuario.modificarProbabilidadDeCritico(-estadistica.modificacionPorcentualTipo2())
 		usuario.modificarMultiplicadorDeCritico(-estadistica.modificacionDanioCritico())
 	}
 	
 	override method coste() = estadistica.coste()*2
+}
+
+object enteInterno inherits HabilidadActiva(usuario = moldor)
+{	
+	var property modo = angelInterno
+	
+	method cambiarModo() { modo.cambiarModo() }
+		
+	override method nombre() = self.modo().nombre()
+	
+	override method efectoAlEquipar() { self.modo().efectoAlEquipar() }
+	
+	override method efectoAlDesequipar() { self.modo().efectoAlDesequipar() }
+
+	override method coste() = 2
+}
+
+object angelInterno
+{
+	method nombre() = "Angel_Interno"
+	
+	method efectoAlEquipar() 
+	{ 
+		moldor.modificarMultiplicadorDeDanioRecibido(-7*moldor.nivel())
+		moldor.modificarMultiplicadorDeAtaque(-7*moldor.nivel())
+	}
+	
+	method efectoAlDesequipar() 
+	{
+		moldor.modificarMultiplicadorDeDanioRecibido(7*moldor.nivel())
+		moldor.modificarMultiplicadorDeAtaque(7*moldor.nivel())
+	}
+	
+	method cambiarModo() 
+	{ 
+		enteInterno.modo(demonioInterno)
+		self.efectoAlDesequipar()
+		demonioInterno.efectoAlEquipar()
+	}
+}
+
+object demonioInterno
+{
+	method nombre() = "Demonio_Interno"
+	
+	method efectoAlEquipar() 
+	{ 
+		moldor.modificarMultiplicadorDeDanioRecibido(7*moldor.nivel())
+		moldor.modificarMultiplicadorDeAtaque(7*moldor.nivel())
+	}
+	
+	method efectoAlDesequipar() 
+	{
+		moldor.modificarMultiplicadorDeDanioRecibido(-7*moldor.nivel())
+		moldor.modificarMultiplicadorDeAtaque(-7*moldor.nivel())
+	}
+	
+	method cambiarModo() 
+	{ 
+		enteInterno.modo(angelInterno)
+		self.efectoAlDesequipar()
+		angelInterno.efectoAlEquipar()
+	}
 }
 

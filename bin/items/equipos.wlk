@@ -135,14 +135,14 @@ class GarraZombiePerforante inherits GarraZombie
 {
 	override method nombre() = "Garra_Zombie"
 	
-	override method atacoA(danioHecho, objetivo) { if(probabilidad.en100De(35)) objetivo.desangrar(1) }
+	override method atacoA(danioHecho, objetivo) { if(probabilidad.en100De(20)) objetivo.desangrar(1) }
 }
 
 class GarraZombieCegadora inherits GarraZombie
 {
 	override method nombre() = "Garra_Zombie_Cegadora"
 	
-	override method atacoA(danioHecho, objetivo) { if(probabilidad.en100De(35)) objetivo.cegar(1) }
+	override method atacoA(danioHecho, objetivo) { if(probabilidad.en100De(25)) objetivo.cegar(1) }
 }
 
 class GarraZombieRobaVida inherits GarraZombie

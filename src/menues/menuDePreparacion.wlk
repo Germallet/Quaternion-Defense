@@ -9,8 +9,8 @@ import interfaz.contadores.*
 object menuDePreparacion
 {
 	var estado = 0
-	const sobrevivientes = [jan, betty, karl]
-	const sobrevivientesSeleccionados = [jan, betty, karl]
+	const sobrevivientes = [jan, betty, karl, moldor] //moldor karl
+	const sobrevivientesSeleccionados = [] //jan, betty, moldor
 	var cursorActual
 	
 	const espaciado = 2
@@ -480,7 +480,7 @@ class SelectorHabilidadPosible
 /******************** Puntos ********************/
 object puntos
 {
-	var puntos = 3
+	var puntos = 5
 	
 	method numeroAMostrar() = puntos
 	method agregar(adicion)

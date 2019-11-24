@@ -15,7 +15,7 @@ class Sobreviviente inherits Personaje
 	var property equipoDeMano = new NingunEquipo()
 	var property casco = new NingunEquipo()
 	var property pechera = new NingunEquipo()
-	var property pantalones = new NingunEquipo()
+	var property pantalones = new Calzoncillos(usuario = self, estado = equipado)
 	var property botas = new NingunEquipo()
 	
 	var ataquePorNivel 
@@ -47,7 +47,7 @@ class Sobreviviente inherits Personaje
 	method defensaPorNivel() = defensaPorNivel
 	
 	// Fuerza del sobreviviente en funcion de su nivel
-	override method ataque() = 0.max(ataque + ataquePorNivel * nivel)
+	override method ataque() = 0.max(super() + ataquePorNivel * nivel)
 	
 	method ataquePorNivel() = ataquePorNivel
 	
@@ -79,7 +79,7 @@ class Sobreviviente inherits Personaje
 	/******************** Nivel ********************/
 	method nivel() = nivel
 	
-	method experienciaParaPasarDeNivel() = (1+nivel)*10
+	method experienciaParaPasarDeNivel() = (1+nivel)**(2) //4/9/16/25
 	
 	method ganarExperiencia(experienciaGanada)
 	{
@@ -103,7 +103,7 @@ class Sobreviviente inherits Personaje
 		experienciaActual = 0
 		
 		self.curar(2*vidaPorNivel)
-	} 
+	}
 	/******************** Inventario ********************/
 	method equiparManos() { arma = new Manos(usuario = self, estado = equipado) }
 	
@@ -239,7 +239,7 @@ class Sobreviviente inherits Personaje
 	override method inicializar() { super() orientacion = derecha }
 	method agarrarDrop(drop) { drop.serAgarrado() }
 	
-	method coste() = 0
+	method coste() = 1
 	method costeTotal() = self.coste() + habilidadesActivas.sum({habilidad => habilidad.coste()}) + habilidadesPasivas.sum({habilidad => habilidad.coste()})
 	method informacion() = "Sobrevivientes/" + self.nombre()
 }
@@ -263,7 +263,7 @@ object jan inherits Sobreviviente
 	ataque = 12, 
 	ataquePorNivel = 8.8, 
 	
-	defensa = 18, 
+	defensa = 20, 
 	defensaPorNivel = 8.2
 )
 {
@@ -371,3 +371,80 @@ object karl inherits Sobreviviente
 	
 	override method efectoAlMorir(asesino) { game.removeVisual(escudo) }
 }
+
+/******************** Karl ********************/
+object moldor inherits Sobreviviente
+(
+	arma = new Manos(usuario = moldor, estado = equipado), 
+	
+	habilidadesActivasIniciales = [new AtaqueDeExperiencia(usuario = moldor), new Cura(categoria = curaNormal ,usuario = moldor), cambioDeEnergias],
+	habilidadesPasivasIniciales = [new Valentia(estadistica = estadisticaNormal, usuario = moldor), new Escudo(estadistica = estadisticaNormal, usuario = moldor), new Vida(estadistica = estadisticaNormal, usuario = moldor)],
+	
+	habilidadesActivasAdicionales = [new Revivir(categoria = revivirMas, usuario = moldor), new FlechazoPerforante(usuario = moldor), new AtaqueOscuro(usuario = moldor), oracion],
+	habilidadesPasivasAdicionales = [new Valentia(estadistica = estadisticaMas, usuario = moldor), new Vida(estadistica = estadisticaMas, usuario = moldor), new Escudo(estadistica = estadisticaMas, usuario = moldor), enteInterno],
+	
+	vidaMaxima = 100, 
+	vidaPorNivel = 17, 
+	
+	ataque = 14, 
+	ataquePorNivel = 4.2, 
+	
+	defensa = 20, 
+	defensaPorNivel = 10.3
+)
+{
+	var property modo = moldorNormal
+	
+	override method nombre() = modo.nombre()
+	
+	method supuestoAtaque() =  0.max(ataquePerforante + arma.ataquePerforante() + ataquePorNivel * nivel)
+	
+	method supuestaDefensa() = (defensa + defensaPorNivel * nivel) + arma.defensa() + equipoDeMano.defensa() + casco.defensa() + pechera.defensa() + pantalones.defensa() + botas.defensa()
+	
+	override method ataque() = modo.ataque()
+	
+	override method defensa() = modo.defensa()
+	
+	method cambiarModo() 
+	{ 
+		modo.cambiarModo()
+		enteInterno.cambiarModo()
+	}
+}
+
+object moldorNormal
+{
+	method nombre() = "Moldor"
+	
+	method energia() = "Energia_Positiva"
+	
+	method ataque() = moldor.supuestoAtaque()
+	
+	method defensa() = moldor.supuestaDefensa()
+	
+	method cambiarModo() { moldor.modo(moldorOscuro) }
+
+	method modoOpuesto() = moldorOscuro
+
+	method oracion() = bendicion
+}
+
+object moldorOscuro
+{
+	method nombre() = "Moldor Oscuro"
+	
+	method energia() = "Energia_Negativa"
+	
+	method ataque() = moldor.supuestaDefensa()
+	
+	method defensa() = moldor.supuestoAtaque()
+	
+	method cambiarModo() { moldor.modo(moldorNormal) }
+	
+	method modoOpuesto() = moldorNormal
+	
+	method oracion() = maldicion
+}
+
+
+

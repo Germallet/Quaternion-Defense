@@ -37,7 +37,7 @@ class HierbaVerde inherits Consumible
 	
 	override method efecto(consumidor)
 	{
-		consumidor.curar(30)
+		consumidor.curar(consumidor.porcentajeDeVidaMaxima(15))
 	}
 	
 	override method nuevoYo() = new HierbaVerde()
