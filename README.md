@@ -10,7 +10,7 @@
 
 Todos somos estudiantes de Paradigmas de Programación en la UTN.
 
-El juego nos pone al mando de un grupo de sobrevivientes (max. 3) que tendran que defenderse de las oleadas de zombies que vendran.
+El juego nos pone al mando de un grupo de sobrevivientes que tendran que defenderse de las oleadas de zombies que vendran.
 Para ello los sobrevivientes deberan para recolectar recursos del mapa interactuando con ellos y obtener objetos que los zombies dejan al morir.
 Los sobrevivinetes podran combinar algunos estos objetos para asi construir equipos y estructuras que los ayudarán a defenderse. 
 Cada sobreviviente cuenta con estadisticas y habilidades únicas que se potenciaran a medida que el sobreviviente sube de nivel.
