@@ -304,7 +304,7 @@ Botas de Hierro:
 
 Diamante: Piedra preciosa útil para combinar.
 
-Ruby: Piedra preciosa útil para combinar.
+Rubí: Piedra preciosa útil para combinar.
 
 Cuero: Cuero de zombie?. Útil para combinar.
 
