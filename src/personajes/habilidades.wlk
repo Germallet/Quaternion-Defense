@@ -642,15 +642,11 @@ object maldicion
 
 object cambioDeEnergias inherits HabilidadActiva(usuario = moldor)
 {
-	override method tiempoDeEnfriamiento() = (7 - self.nivel()).limitBetween(3,5) // 5/5/4/3/3
+	override method tiempoDeEnfriamiento() = 8 - self.nivel()
 	
 	override method nombre() = "Cambio_De_Energias"
 	
-	override method efectoDeActivacion() 
-	{ 
-		moldor.curar(moldor.porcentajeDeVidaMaxima(5))
-		moldor.cambiarModo()
-	}
+	override method efectoDeActivacion() { moldor.cambiarModo()	}
 	
 	override method coste() = 0
 	
