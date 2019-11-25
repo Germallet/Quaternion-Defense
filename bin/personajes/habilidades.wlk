@@ -644,7 +644,7 @@ object cambioDeEnergias inherits HabilidadActiva(usuario = moldor)
 {
 	override method tiempoDeEnfriamiento() = (7 - self.nivel()).limitBetween(3,5) // 5/5/4/3/3
 	
-	override method nombre() = moldor.modo().modoOpuesto().energia()
+	override method nombre() = "Cambio_De_Energias"
 	
 	override method efectoDeActivacion() 
 	{ 
@@ -653,6 +653,8 @@ object cambioDeEnergias inherits HabilidadActiva(usuario = moldor)
 	}
 	
 	override method coste() = 0
+	
+	override method image() = "assets/Habilidades/" + moldor.modo().modoOpuesto().energia() + "_" + estado.nombre() + ".png"
 }
 
 /******************** PASIVAS ********************/
