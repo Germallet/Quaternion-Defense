@@ -17,7 +17,7 @@ object menuDePreparacion
 	
 	method inicializarSobrevivientes()
 	{
-		sobrevivientes.forEach({sobreviviente => sobreviviente.reiniciarHabilidades()})
+		sobrevivientes.forEach({sobreviviente => sobreviviente.desequiparHabilidades()})
 	}
 	
 	method generar()
@@ -177,12 +177,13 @@ object menuDePreparacion
 		{
 			sobrevivientesSeleccionados.remove(sobreviviente)
 			puntos.agregar(sobreviviente.costeTotal())
-			sobreviviente.reiniciarHabilidades()
+			sobreviviente.desequiparHabilidades()
 			sonido.reproducir("Cursor.wav")
 		}
 		else if(puntos.puedePagar(sobreviviente.costeTotal()))
 		{
 			puntos.quitar(sobreviviente.costeTotal())
+			sobreviviente.equiparHabilidadesIniciales()
 			sobrevivientesSeleccionados.add(sobreviviente)
 		}
 	}

@@ -79,7 +79,7 @@ class Habilidad
 	
 	method desequipar()
 	{
-		usuario = null
+		//usuario = null
 		estado = habilidadNoDisponible
 		self.efectoAlDesequipar()
 	}
@@ -144,19 +144,7 @@ class HabilidadActiva inherits Habilidad
 		sonido.reproducir("Habilidad_En_Enfriamiento.wav")
 	}
 	
-	override method equiparEn(usuario)
-	{
-		super(usuario)
-		usuario.agregarHabilidadActiva(self)
-	}
-	
 	override method tiempoDeEnfriamiento() = 0
-	
-	override method desequipar()
-	{
-		usuario.removerHabilidadActiva(self)
-		super()
-	}
 }
 
 /*
@@ -670,13 +658,12 @@ class HabilidadPasiva inherits Habilidad
 	override method equiparEn(_usuario)
 	{
 		super(_usuario)
-		usuario.agregarHabilidadPasiva(self)
 		self.aplicarEfectoContinuo()
 	}
 	
 	override method desequipar()
 	{
-		usuario.removerHabilidadPasiva(self)
+		super()
 		self.removerEfectoContinuo()
 	}
 	
