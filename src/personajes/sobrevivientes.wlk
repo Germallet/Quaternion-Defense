@@ -270,11 +270,11 @@ object jan inherits Sobreviviente
 (
 	arma = manosDeJan, 
 	
-	habilidadesActivasIniciales = [new CocktailMolotov(usuario = jan), new FlechazoSimple(usuario = jan), new Regeneracion(categoria = regeneracionNormal,usuario = jan)],
-	habilidadesPasivasIniciales = [new Valentia(estadistica = estadisticaNormal, usuario = jan), new Escudo(estadistica = estadisticaNormal, usuario = jan), new Proteccion(estadistica = estadisticaNormal, usuario = jan)],
+	habilidadesActivasIniciales = [new CocktailMolotov(), new FlechazoSimple(), new Regeneracion(categoria = regeneracionNormal)],
+	habilidadesPasivasIniciales = [new Valentia(estadistica = estadisticaNormal), new Escudo(estadistica = estadisticaNormal), new Proteccion(estadistica = estadisticaNormal)],
 	
-	habilidadesActivasAdicionales = [new FlechazoIgneo(usuario = jan), new FlechazoGelido(usuario = jan), new FlechazoOscuro(usuario = jan), new FlechazoPerforante(usuario = jan)],
-	habilidadesPasivasAdicionales = [new Valentia(estadistica = estadisticaMas, usuario = jan), new Valentia(estadistica = estadisticaMasMas, usuario = jan), new Escudo(estadistica = estadisticaMas, usuario = jan), new Escudo(estadistica = estadisticaMasMas, usuario = jan), new Proteccion(estadistica = estadisticaMasMas, usuario = jan)],
+	habilidadesActivasAdicionales = [new FlechazoIgneo(), new FlechazoGelido(), new FlechazoOscuro(), new FlechazoPerforante()],
+	habilidadesPasivasAdicionales = [new Valentia(estadistica = estadisticaMas), new Valentia(estadistica = estadisticaMasMas), new Escudo(estadistica = estadisticaMas), new Escudo(estadistica = estadisticaMasMas), new Proteccion(estadistica = estadisticaMasMas)],
 	
 	vidaMaxima = 100, 
 	vidaPorNivel = 16.8, 
@@ -302,11 +302,11 @@ object betty inherits Sobreviviente
 (
 	arma = new Manos(usuario = betty, estado = equipado), 
 	
-	habilidadesActivasIniciales = [new Cura(categoria = curaNormal, usuario = betty), new Regeneracion(categoria = regeneracionNormal, usuario = betty), new Revivir(categoria = revivirNormal, usuario = betty)],
-	habilidadesPasivasIniciales = [new Vida(estadistica = estadisticaNormal, usuario = betty), new Escudo(estadistica = estadisticaNormal, usuario = betty), new Valentia(estadistica = estadisticaNormal)],
+	habilidadesActivasIniciales = [new Cura(categoria = curaNormal), new Regeneracion(categoria = regeneracionNormal), new Revivir(categoria = revivirNormal)],
+	habilidadesPasivasIniciales = [new Vida(estadistica = estadisticaNormal), new Escudo(estadistica = estadisticaNormal), new Valentia(estadistica = estadisticaNormal)],
 	
-	habilidadesActivasAdicionales = [new Cura(categoria = curaMas, usuario = betty), new Cura(categoria = curaMasMas, usuario = betty),  new Regeneracion(categoria = regeneracionMas, usuario = betty), new Revivir(categoria = revivirMasMas, usuario = betty)],
-	habilidadesPasivasAdicionales = [new Vida(estadistica = estadisticaMas, usuario = betty), new Vida(estadistica = estadisticaMasMas, usuario = betty), new Escudo(estadistica = estadisticaMasMas, usuario = betty), new AutoRevivir(usuario = betty) ],
+	habilidadesActivasAdicionales = [new Cura(categoria = curaMas), new Cura(categoria = curaMasMas),  new Regeneracion(categoria = regeneracionMas), new Revivir(categoria = revivirMasMas)],
+	habilidadesPasivasAdicionales = [new Vida(estadistica = estadisticaMas), new Vida(estadistica = estadisticaMasMas), new Escudo(estadistica = estadisticaMasMas), new AutoRevivir() ],
 	
 	vidaMaxima = 100, 
 	vidaPorNivel = 27, 
@@ -341,11 +341,11 @@ object karl inherits Sobreviviente
 (
 	arma = new Manos(usuario = karl, estado = equipado), 
 	
-	habilidadesActivasIniciales = [new AtaqueDeExperiencia(usuario = karl), new AtaqueSimple(usuario = karl), new Cura(categoria = curaNormal ,usuario = karl)],
-	habilidadesPasivasIniciales = [new Valentia(estadistica = estadisticaNormal, usuario = karl), new Critico(estadistica = estadisticaNormal, usuario = karl), new Despiadado(estadistica = estadisticaNormal, usuario = karl)],
+	habilidadesActivasIniciales = [new AtaqueDeExperiencia(), new AtaqueSimple(), new Cura(categoria = curaNormal)],
+	habilidadesPasivasIniciales = [new Valentia(estadistica = estadisticaNormal), new Critico(estadistica = estadisticaNormal), new Despiadado(estadistica = estadisticaNormal)],
 	
-	habilidadesActivasAdicionales = [new AtaqueIgneo(usuario = karl), new AtaqueGelido(usuario = karl), new AtaqueOscuro(usuario = karl), new AtaquePerforante(usuario = karl)],
-	habilidadesPasivasAdicionales = [new Valentia(estadistica = estadisticaMasMas, usuario = karl), new Critico(estadistica = estadisticaMas, usuario = karl), new Critico(estadistica = estadisticaMasMas, usuario = karl), new Despiadado(estadistica = estadisticaMas, usuario = karl)],
+	habilidadesActivasAdicionales = [new AtaqueIgneo(), new AtaqueGelido(), new AtaqueOscuro(), new AtaquePerforante()],
+	habilidadesPasivasAdicionales = [new Valentia(estadistica = estadisticaMasMas), new Critico(estadistica = estadisticaMas), new Critico(estadistica = estadisticaMasMas), new Despiadado(estadistica = estadisticaMas)],
 	
 	vidaMaxima = 100, 
 	vidaPorNivel = 9, 
@@ -396,11 +396,11 @@ object moldor inherits Sobreviviente
 (
 	arma = new Manos(usuario = moldor, estado = equipado), 
 	
-	habilidadesActivasIniciales = [new AtaqueDeExperiencia(usuario = moldor), new Cura(categoria = curaNormal ,usuario = moldor), cambioDeEnergias],
-	habilidadesPasivasIniciales = [new Valentia(estadistica = estadisticaNormal, usuario = moldor), new Escudo(estadistica = estadisticaNormal, usuario = moldor), new Vida(estadistica = estadisticaNormal, usuario = moldor)],
+	habilidadesActivasIniciales = [new AtaqueDeExperiencia(), new Cura(categoria = curaNormal), cambioDeEnergias],
+	habilidadesPasivasIniciales = [new Valentia(estadistica = estadisticaNormal), new Escudo(estadistica = estadisticaNormal), new Vida(estadistica = estadisticaNormal)],
 	
-	habilidadesActivasAdicionales = [new Revivir(categoria = revivirMas, usuario = moldor), new FlechazoPerforante(usuario = moldor), new AtaqueOscuro(usuario = moldor), oracion],
-	habilidadesPasivasAdicionales = [new Valentia(estadistica = estadisticaMas, usuario = moldor), new Vida(estadistica = estadisticaMas, usuario = moldor), new Escudo(estadistica = estadisticaMas, usuario = moldor), enteInterno],
+	habilidadesActivasAdicionales = [new Revivir(categoria = revivirMas), new FlechazoPerforante(), new AtaqueOscuro(), oracion],
+	habilidadesPasivasAdicionales = [new Valentia(estadistica = estadisticaMas), new Vida(estadistica = estadisticaMas), new Escudo(estadistica = estadisticaMas), enteInterno],
 	
 	vidaMaxima = 100, 
 	vidaPorNivel = 17, 
