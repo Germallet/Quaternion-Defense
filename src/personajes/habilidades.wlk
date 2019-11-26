@@ -19,7 +19,7 @@ class Habilidad
 	var position = null
 	var enfriamiento = null
 	
-	var estado = habilidadDisponible
+	var estado = habilidadNoDisponible
 	
 	method nombre() = "Ninguna_Habilidad"
 	
@@ -71,6 +71,7 @@ class Habilidad
 	method equiparEn(_usuario)
 	{
 		usuario = _usuario
+		estado = habilidadDisponible
 		self.efectoAlEquipar()
 	}
 	
@@ -79,6 +80,7 @@ class Habilidad
 	method desequipar()
 	{
 		usuario = null
+		estado = habilidadNoDisponible
 		self.efectoAlDesequipar()
 	}
 	

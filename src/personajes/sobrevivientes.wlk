@@ -210,8 +210,14 @@ class Sobreviviente inherits Personaje
 
 	method reiniciarHabilidades()
 	{
+		habilidadesActivas.forEach{ habilidad => habilidad.desequipar() }		
+		habilidadesPasivas.forEach{ habilidad => habilidad.desequipar() }
+		
 		habilidadesActivas = habilidadesActivasIniciales.copy()
 		habilidadesPasivas = habilidadesPasivasIniciales.copy()
+		
+		habilidadesActivas.forEach{ habilidad => habilidad.equiparEn(self) }		
+		habilidadesPasivas.forEach{ habilidad => habilidad.equiparEn(self) }
 	}
 	
 	method cantidadHabilidades() = habilidadesActivas.size() + habilidadesPasivas.size()
