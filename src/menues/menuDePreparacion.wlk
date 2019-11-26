@@ -272,13 +272,9 @@ object cursorDeSobreviviente inherits CursorDePreparacion
 	method obtenerHabilidadActivaPosible(numero) = self.sobreviviente().habilidadActivaPosible(numero)
 	method obtenerHabilidadPasivaPosible(numero) = self.sobreviviente().habilidadPasivaPosible(numero)
 	
-	method reemplazarHabilidadActiva(habilidadOriginal, habilidadComprada)
+	method reemplazarHabilidad(habilidadOriginal, habilidadComprada)
 	{
-		self.sobreviviente().reemplazarHabilidadActiva(habilidadOriginal, habilidadComprada)
-	}
-	method reemplazarHabilidadPasiva(habilidadOriginal, habilidadComprada)
-	{
-		self.sobreviviente().reemplazarHabilidadPasiva(habilidadOriginal, habilidadComprada)
+		self.sobreviviente().reemplazarHabilidad(habilidadOriginal, habilidadComprada)
 	}
 }
 object cursorDeHabilidadSeleccionada inherits CursorDePreparacion
@@ -313,10 +309,6 @@ object cursorDeHabilidadSeleccionada inherits CursorDePreparacion
 	}
 
 	method obtenerHabilidadPosible(numero) = self.selectorEnCasilla().obtenerHabilidadPosible(numero)
-	method reemplazarHabilidad(habilidadComprada)
-	{
-		self.selectorEnCasilla().reemplazarHabilidad(habilidadComprada)
-	}
 }
 object cursorDeHabilidadPosible inherits CursorDePreparacion
 {
@@ -355,7 +347,7 @@ object cursorDeHabilidadPosible inherits CursorDePreparacion
 		{
 			puntos.agregar(habilidadOriginal.coste())
 			puntos.quitar(habilidadNueva.coste())
-			cursorDeHabilidadSeleccionada.reemplazarHabilidad(habilidadNueva)
+			cursorDeSobreviviente.reemplazarHabilidad(habilidadOriginal, habilidadNueva)
 			menuDePreparacion.reproducirSonidoOk()
 		}
 		else
@@ -428,11 +420,6 @@ class SelectorHabilidadActiva
 	
 	method seleccion() = cursorDeSobreviviente.sobreviviente().habilidadActiva(numeroDeHabilidad)
 	method obtenerHabilidadPosible(numero) = cursorDeSobreviviente.obtenerHabilidadActivaPosible(numero)
-	
-	method reemplazarHabilidad(nuevaHabilidad)
-	{
-		cursorDeSobreviviente.reemplazarHabilidadActiva(self.seleccion(), nuevaHabilidad)
-	}
 }
 class SelectorHabilidadPasiva
 {
@@ -453,11 +440,6 @@ class SelectorHabilidadPasiva
 	
 	method seleccion() = cursorDeSobreviviente.seleccion().habilidadPasiva(numeroDeHabilidad)
 	method obtenerHabilidadPosible(numero) = cursorDeSobreviviente.obtenerHabilidadPasivaPosible(numero)
-	
-	method reemplazarHabilidad(nuevaHabilidad)
-	{
-		cursorDeSobreviviente.reemplazarHabilidadPasiva(self.seleccion(), nuevaHabilidad)
-	}
 }
 class SelectorHabilidadPosible
 {

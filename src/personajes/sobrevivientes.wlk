@@ -163,42 +163,16 @@ class Sobreviviente inherits Personaje
 		habilidadesActivas.get(n).activar()
 		self.dejarDeInteractuarSiLoEstaHaciendo()
 	}
-	
-	method agregarHabilidadActiva(habilidad)
-	{
-		habilidadesActivas = [habilidad] + habilidadesActivas.take(2)
-	}
-	
-	method agregarHabilidadPasiva(habilidad)
-	{
-		habilidadesPasivas = [habilidad] + habilidadesPasivas.take(2)
-	}
-	
-	method removerHabilidadActiva(habilidad)
-	{
-		habilidadesActivas.remove(habilidad)
-		habilidadesActivas.add(new HabilidadActiva())
-	}
-	
-	method removerHabilidadPasiva(habilidad)
-	{
-		habilidadesPasivas.remove(habilidad)
-		habilidadesPasivas.add(new HabilidadPasiva())
-	}
-	
-	method reemplazarHabilidadActiva(original, nueva)
+		
+	method reemplazarHabilidad(original, nueva)
 	{
 		habilidadesActivas = habilidadesActivas.map({
 			habilidad =>
 			if (habilidad == original)
-				return nueva
+				return nueva			
 			else
 				return habilidad
 		})
-	}
-
-	method reemplazarHabilidadPasiva(original, nueva)
-	{
 		habilidadesPasivas = habilidadesPasivas.map({
 			habilidad =>
 			if (habilidad == original)
@@ -206,6 +180,9 @@ class Sobreviviente inherits Personaje
 			else
 				return habilidad
 		})
+		
+		original.desequipar()
+		nueva.equiparEn(self)
 	}
 	
 	method equiparHabilidadesIniciales()
