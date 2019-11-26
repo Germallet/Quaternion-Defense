@@ -10,7 +10,7 @@ import eventos.*
 class Elemento inherits ObjetoEnJuego
 {	
 	const iniciador
-	var estado = 0
+	var estado
 	
 	const eventoDeElemento
 	
@@ -30,6 +30,7 @@ class Elemento inherits ObjetoEnJuego
 	method activarEn(posicion)
 	{
 		game.addVisualIn(self, posicion)
+		estado = 0
 		eventoDeElemento.comenzar()
 		self.efectoInicial()
 	}
@@ -82,14 +83,14 @@ class Rayo inherits Elemento
 {
 	constructor(_iniciador) = super(4, _iniciador)
 	
-	method efectoInicial()
+	override method efectoInicial()
 	{		
 	}
 	override method efectoPeriodico()
 	{
 		game.colliders(self).forEach{ objeto => objeto.sufrirDanio(15 ,iniciador)}
 	}
-	method efectoAlTerminar()
+	override method efectoAlTerminar()
 	{
 	}
 	
