@@ -796,12 +796,12 @@ class Valentia inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.modificarMultiplicadorDeAtaque(estadistica.modificacionPorcentualTipo1())
+		usuario.modificarMultiplicadorDeAtaque(estadistica.modificacionPorcentualTipo1(self.nivel()))
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.modificarMultiplicadorDeAtaque(-estadistica.modificacionPorcentualTipo1())
+		usuario.modificarMultiplicadorDeAtaque(-estadistica.modificacionPorcentualTipo1(self.nivel()))
 	}
 }
 
@@ -811,15 +811,14 @@ class Vida inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.modificarMultiplicadorDeVidaMaxima(estadistica.modificacionPorcentualTipo1())
+		usuario.modificarMultiplicadorDeVidaMaxima(estadistica.modificacionPorcentualTipo1(self.nivel()))
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.modificarMultiplicadorDeVidaMaxima(-estadistica.modificacionPorcentualTipo1())
+		usuario.modificarMultiplicadorDeVidaMaxima(-estadistica.modificacionPorcentualTipo1(self.nivel()))
 	}
 	
-	override method image() = "assets/Habilidades/Vida.png"
 }
 
 class Escudo inherits HabilidadDeCambioDeEstadistica
@@ -828,12 +827,12 @@ class Escudo inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.modificarMultiplicadorDeDefensa(estadistica.modificacionPorcentualTipo1())
+		usuario.modificarMultiplicadorDeDefensa(estadistica.modificacionPorcentualTipo1(self.nivel()))
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.modificarMultiplicadorDeDefensa(-estadistica.modificacionPorcentualTipo1())
+		usuario.modificarMultiplicadorDeDefensa(-estadistica.modificacionPorcentualTipo1(self.nivel()))
 	}
 }
 
@@ -843,12 +842,12 @@ class Proteccion inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.modificarMultiplicadorDeDanioRecibido(estadistica.modificacionPorcentualTipo1())
+		usuario.modificarMultiplicadorDeDanioRecibido(estadistica.modificacionPorcentualTipo1(self.nivel()))
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.modificarMultiplicadorDeDanioRecibido(-estadistica.modificacionPorcentualTipo1())
+		usuario.modificarMultiplicadorDeDanioRecibido(-estadistica.modificacionPorcentualTipo1(self.nivel()))
 	}
 }
 
@@ -858,12 +857,12 @@ class Aceleracion inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.acelerar(estadistica.modificacionPlana())
+		usuario.acelerar(estadistica.modificacionPlana(self.nivel()))
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.ralentizar(-estadistica.modificacionPlana())
+		usuario.ralentizar(-estadistica.modificacionPlana(self.nivel()))
 	}
 }
 
@@ -873,12 +872,12 @@ class Presicion inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.modificarPresicion(estadistica.modificacionPorcentualTipo2())
+		usuario.modificarPresicion(estadistica.modificacionPorcentualTipo2(self.nivel()))
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.modificarPresicion(-estadistica.modificacionPorcentualTipo2())
+		usuario.modificarPresicion(-estadistica.modificacionPorcentualTipo2(self.nivel()))
 	}
 }
 
@@ -888,12 +887,12 @@ class Bloqueo inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.modificarProbabilidadDeBloque(estadistica.modificacionPorcentualTipo2())
+		usuario.modificarProbabilidadDeBloque(estadistica.modificacionPorcentualTipo2(self.nivel()))
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.modificarProbabilidadDeBloque(-estadistica.modificacionPorcentualTipo2())
+		usuario.modificarProbabilidadDeBloque(-estadistica.modificacionPorcentualTipo2(self.nivel()))
 	}
 }
 
@@ -903,12 +902,12 @@ class Critico inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.modificarProbabilidadDeCritico(estadistica.modificacionPorcentualTipo2())
+		usuario.modificarProbabilidadDeCritico(estadistica.modificacionPorcentualTipo2(self.nivel()))
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.modificarProbabilidadDeCritico(-estadistica.modificacionPorcentualTipo2())
+		usuario.modificarProbabilidadDeCritico(-estadistica.modificacionPorcentualTipo2(self.nivel()))
 	}
 }
 
@@ -918,12 +917,12 @@ class DanioCritico inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.modificarMultiplicadorDeCritico(estadistica.modificacionDanioCritico())
+		usuario.modificarMultiplicadorDeCritico(estadistica.modificacionDanioCritico(self.nivel()))
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.modificarMultiplicadorDeCritico(-estadistica.modificacionDanioCritico())
+		usuario.modificarMultiplicadorDeCritico(-estadistica.modificacionDanioCritico(self.nivel()))
 	}
 }
 
@@ -933,14 +932,14 @@ class Despiadado inherits HabilidadDeCambioDeEstadistica
 	
 	override method efectoAlEquipar()
 	{
-		usuario.modificarProbabilidadDeCritico(estadistica.modificacionPorcentualTipo2())
-		usuario.modificarMultiplicadorDeCritico(estadistica.modificacionDanioCritico())
+		usuario.modificarProbabilidadDeCritico(estadistica.modificacionPorcentualTipo2(self.nivel()))
+		usuario.modificarMultiplicadorDeCritico(estadistica.modificacionDanioCritico(self.nivel()))
 	}
 	
 	override method efectoAlDesequipar()
 	{
-		usuario.modificarProbabilidadDeCritico(-estadistica.modificacionPorcentualTipo2())
-		usuario.modificarMultiplicadorDeCritico(-estadistica.modificacionDanioCritico())
+		usuario.modificarProbabilidadDeCritico(-estadistica.modificacionPorcentualTipo2(self.nivel()))
+		usuario.modificarMultiplicadorDeCritico(-estadistica.modificacionDanioCritico(self.nivel()))
 	}
 	
 	override method coste() = estadistica.coste()*2

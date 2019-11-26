@@ -18,6 +18,7 @@ class Personaje inherits ObjetoConVida
 	var ataque
 	var ataquePerforante = 0
 	
+	var multiplicadorDeDefensa = 100
 	var multiplicadorDeAtaque = 100
 	var multiplicadorDeDanioRecibido = 100
 	
@@ -62,7 +63,7 @@ class Personaje inherits ObjetoConVida
 	/******************** Estadisticas ********************/
 	method nombre()
 	
-	method ataque() = ataque +  arma.ataque()
+	method ataque() = (ataque +  arma.ataque())  * self.multiplicadorDeAtaque()
 	
 	method modificarAtaque(modificacion) { ataque = ataque + modificacion }
 	
@@ -82,11 +83,18 @@ class Personaje inherits ObjetoConVida
 		multiplicadorDeDanioRecibido = multiplicadorDeDanioRecibido + multiplicador
 	}
 	
-	method defensa() = defensa
+	method defensa() = defensa * self.multiplicadorDeDefensa()
 	
 	method modificarDefensa(modificacion)
 	{
 		defensa = defensa + modificacion
+	}
+	
+	method multiplicadorDeDefensa() = multiplicadorDeDefensa/100
+	
+	method modificarMultiplicadorDeDefensa(multiplicador)
+	{
+		multiplicadorDeDefensa = multiplicadorDeDefensa + multiplicador
 	}
 	
 	method modificarConstanteDeDanioRecibido(modificacion)
@@ -123,7 +131,7 @@ class Personaje inherits ObjetoConVida
 	{
 		probabilidadDeCritico = probabilidadDeCritico + probabilidad
 	}
-	method modificarMultiplicadorCritico(multiplicador)
+	method modificarMultiplicadorDeCritico(multiplicador)
 	{
 		multiplicadorDeCritico = multiplicadorDeCritico + multiplicador
 	}
@@ -379,8 +387,7 @@ object ataqueHabilitado
 		const arma = atacante.arma()
 		
 		// Ecuaciones para el calculo del daño
-		const poderDeAtaque = atacante.ataque() * atacante.multiplicadorDeAtaque()
-		const danioNormal = poderDeAtaque * atacante.multiplicadorDeDanio() / (objetivo.defensa() + 100) 
+		const danioNormal = atacante.ataque() * atacante.multiplicadorDeDanio() / (objetivo.defensa() + 100) 
 		const danioDeAtaque = (danioNormal + atacante.ataquePerforante() + objetivo.constanteDeDanioRecibido()) * atacante.multiplicadorDeCritico() * objetivo.multiplicadorDeDanioRecibido()
 		
 		// El objetivo Recibe el daño
