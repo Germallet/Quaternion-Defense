@@ -13,6 +13,14 @@ object inventarioDeRecursos
 		new CasillaRecurso(hierro).ubicarEn(game.at(posicion.x(), posicion.y() - 1))
 		new CasillaRecurso(oro).ubicarEn(game.at(posicion.x() + 1, posicion.y() - 1))
 	}
+	
+	method reiniciarRecursos()
+	{
+		madera.reiniciar()
+		piedra.reiniciar()
+		hierro.reiniciar()
+		oro.reiniciar()
+	}
 }
 
 class CasillaRecurso inherits CasillaDeInventarioEnInterfaz

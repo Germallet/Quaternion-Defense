@@ -1,5 +1,9 @@
 import wollok.game.*
 
+import menues.menuDePreparacion.*
+
+import interfaz.inventarioGeneral.*
+import interfaz.inventarioDeRecursos.*
 import interfaz.interfaz.*
 import interfaz.cursores.*
 import interfaz.mensaje.*
@@ -7,20 +11,18 @@ import interfaz.mensaje.*
 import personajes.sobrevivientes.*
 import personajes.enemigos.*
 
+import items.materiales.*
+import items.equipos.*
+
 import objetosEnJuego.objetosExtraibles.*
 import objetosEnJuego.objetosDeInteraccion.*
 import objetosEnJuego.fondos.*
+import objetosEnJuego.drops.*
 
 import sonidos.*
 import probabilidad.*
 import reloj.*
-import menues.menuDePreparacion.*
-
-import interfaz.inventarioGeneral.*
-import items.materiales.*
-import items.equipos.*
 import eventos.*
-import objetosEnJuego.drops.*
 
 object escenario
 {
@@ -283,25 +285,30 @@ object escenario
 		}		
 		nroHorda++
 	}
-	
+
 	method ganar()
 	{
 		new EventoSimple(eventos02Segundos, 0.7, { sobrevivientes.forEach{ sobreviviente => game.say(sobreviviente, "Ganamos!") } }).comenzar()
 		puntos.agregar(2 + nivel*2)
 		nivel++
-		new EventoSimple(eventos1Segundo, 1, { self.terminarEscenario() }).comenzar()
+		new EventoSimple(eventos1Segundo, 1, { self.terminar() }).comenzar()
 	}
 	method perder()
 	{
 		new EventoSimple(eventos02Segundos, 0.7, { enemigos.forEach{ enemigo => game.say(enemigo, "Perdiste! JAJAJA") } }).comenzar()
-		new EventoSimple(eventos1Segundo, 1, { self.terminarEscenario() }).comenzar()
+		new EventoSimple(eventos1Segundo, 1, { self.terminar() }).comenzar()
 	}
-	method terminarEscenario()
+	method terminar()
 	{
 		//musica.terminar()
+		sobrevivientes.forEach{ sobreviviente => sobreviviente.reiniciar() }
 		sobrevivientes.clear()
 		enemigos.clear()
 		estructuras.clear()
+		
+		inventarioGeneral.limpiar()
+		inventarioDeRecursos.reiniciarRecursos()
+		
 		game.allVisuals().forEach{ visual => game.removeVisual(visual) }
 		menuDePreparacion.generar()
 	}

@@ -104,6 +104,12 @@ class Sobreviviente inherits Personaje
 		
 		self.curar(2*vidaPorNivel)
 	}
+	
+	method reiniciarNiveles()
+	{
+		nivel = 1
+		experienciaActual = 0
+	}
 	/******************** Inventario ********************/
 	method equiparManos() { arma = new Manos(usuario = self, estado = equipado) }
 	
@@ -235,6 +241,13 @@ class Sobreviviente inherits Personaje
 	]
 	
 	/******************** Otros ********************/
+	method reiniciar()
+	{	
+		self.curarTodo()
+		self.reiniciarComportamientos()
+		self.desequiparTodo()
+	}
+	
 	override method image() = "assets/Personajes/Sobrevivientes/" + self.nombre() + "/" + self.estadoDeAnimacion() + ".png" // Obtiene la imagen de la carpeta assets aprovechando para donde mira el sobreviviente
 	override method inicializar() { super() orientacion = derecha }
 	method agarrarDrop(drop) { drop.serAgarrado() }

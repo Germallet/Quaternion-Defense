@@ -2,7 +2,8 @@ import items.*
 
 class Recurso inherits ItemAcumulable
 {
-	override method agregarAInventario(){}
+	method reiniciar() { cantidad = 0 }
+	override method agregarAInventario() {}
 	override method interactuar() {}
 	override method direccion() = super() + "Recursos/" + self.nombre()
 }

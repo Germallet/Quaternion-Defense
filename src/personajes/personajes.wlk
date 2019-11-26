@@ -261,6 +261,15 @@ class Personaje inherits ObjetoConVida
 	method curarCongelado() { estadoDeCongelado.curar(congelado) }
 	method curarCeguera() { estadoDeCeguera.curar(ceguera) }
 	
+	method curarTodo()	
+	{
+		estadoDeQuemadura.curar(quemadura) 
+		estadoDeSangrado.curar(sangrado)
+	 	estadoDeEscarcha.curar(escarcha)
+		estadoDeCongelado.curar(congelado)
+		estadoDeCeguera.curar(ceguera)
+	}
+	
 	/******************** Movimiento y Posicion ********************/
 	method moverHacia(direccion)
 	{
@@ -284,6 +293,15 @@ class Personaje inherits ObjetoConVida
 	method estadoDeEventos(_estadoDeEventos) { estadoDeEventos = _estadoDeEventos }
 	
 	/******************** Otros ********************/
+	method reiniciarComportamientos()	
+	{
+		comportamientoDeMovimiento = normal
+		comportamientoDeAtaque = ataqueHabilitado
+		comportamientoDeHabilidades = habilidadesHabilitadas
+		estado = parado
+		estadoDeEventos = eventosInactivos
+	}
+	
 	// Experiencia que da al ser asesinado
 	method experienciaQueDa() = 0
 	method tiempoDeAccion() = 1 // En segundos
@@ -510,6 +528,7 @@ object derribado
 {
 	method aplicarEfectos(personaje)
 	{
+		personaje.curarTodo()
 		personaje.deshabilitarCuracion()
 		personaje.deshabilitarAtaque()
 		personaje.deshabilitarHabilidades()

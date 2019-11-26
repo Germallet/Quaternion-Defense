@@ -33,6 +33,11 @@ object inventarioGeneral
 		items.remove(item)
 	}
 	
+	method limpiar()
+	{
+		items.clear()
+	}
+	
 	method generar()
 	{
 		var ubicacionEnListaDeItem = 0
