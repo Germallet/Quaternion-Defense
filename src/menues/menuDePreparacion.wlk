@@ -401,7 +401,7 @@ class SelectorSobreviviente
 		sobreviviente = _sobreviviente
 	}	
 	
-	method estadoPorSeleccion() = if(menuDePreparacion.estaSeleccionado(self.seleccion())) return "Abajo" else return "Arriba"
+	method estadoPorSeleccion() = if(menuDePreparacion.estaSeleccionado(self.seleccion())) "Abajo" else "Arriba"
 	method image() = "assets/Personajes/Sobrevivientes/" + self.seleccion().nombre() + "/" + self.estadoPorSeleccion() + ".png" 
 	method ubicar(posX, posY)
 	{
