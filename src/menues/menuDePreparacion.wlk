@@ -267,10 +267,10 @@ object cursorDeSobreviviente inherits CursorDePreparacion
 		menuDePreparacion.alternarSeleccionSobreviviente(self.sobreviviente())
 		menuDePreparacion.reproducirSonidoOk()
 	}
+	method elPersonajeEstaComprado() = menuDePreparacion.estaSeleccionado(self.sobreviviente())
 	
 	method obtenerHabilidadActivaPosible(numero) = self.sobreviviente().habilidadActivaPosible(numero)
 	method obtenerHabilidadPasivaPosible(numero) = self.sobreviviente().habilidadPasivaPosible(numero)
-	
 	
 	method reemplazarHabilidadActiva(habilidadOriginal, habilidadComprada)
 	{
@@ -345,12 +345,13 @@ object cursorDeHabilidadPosible inherits CursorDePreparacion
 		}	
 	}
 	
-	method puedeComprarHabilidad(habilidadOriginal, habilidadNueva) = not cursorDeSobreviviente.seleccion().tieneHabilidad(habilidadNueva) and puntos.puedePagar(habilidadNueva.coste() - habilidadOriginal.coste())
+	method puedeComprarHabilidad(habilidadOriginal, habilidadNueva) = not cursorDeSobreviviente.seleccion().tieneHabilidad(habilidadNueva) and cursorDeSobreviviente.elPersonajeEstaComprado() and puntos.puedePagar(habilidadNueva.coste() - habilidadOriginal.coste())
 	method enter()
 	{
 		const habilidadOriginal = cursorDeHabilidadSeleccionada.seleccion()
 		const habilidadNueva = self.seleccion()
-		if (self.puedeComprarHabilidad(habilidadOriginal, habilidadNueva))
+		
+		if(self.puedeComprarHabilidad(habilidadOriginal, habilidadNueva))
 		{
 			puntos.agregar(habilidadOriginal.coste())
 			puntos.quitar(habilidadNueva.coste())
