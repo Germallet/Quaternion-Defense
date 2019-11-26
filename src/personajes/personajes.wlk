@@ -125,7 +125,9 @@ class Personaje inherits ObjetoConVida
 	/******************** Critico ********************/
 	method probabilidadDeCritico() = probabilidadDeCritico
 	
-	method multiplicadorDeCritico() = if(probabilidad.en100De(probabilidadDeCritico)) multiplicadorDeCritico/100 else 1
+	method dioCritico() = probabilidad.en100De(probabilidadDeCritico)
+	
+	method multiplicadorDeCritico() = multiplicadorDeCritico/100
 	
 	method modificarProbabilidadDeCritico(probabilidad)
 	{
@@ -204,10 +206,16 @@ class Personaje inherits ObjetoConVida
 				bloqueo.comenzar()
 				tiempo.comenzar()
 				
-				self.sufrirDanio(danio * 0.5, agresor) // Sufre daño reducidoa la mitad por bloqueo
+				const danioBloqueado = danio * 0.5
+				
+				self.sufrirDanio(danioBloqueado, agresor) // Sufre daño reducidoa la mitad por bloqueo
+				agresor.arma().atacoA(danioBloqueado, self)
 			}
 			else
+			{ 
 				self.sufrirDanio(danio, agresor) // Sufre daño normal
+				agresor.arma().atacoA(danio, self)
+			}		
 		}
 		else
 		{
@@ -388,11 +396,27 @@ object ataqueHabilitado
 		
 		// Ecuaciones para el calculo del daño
 		const danioNormal = atacante.ataque() * atacante.multiplicadorDeDanio() / (objetivo.defensa() + 100) 
-		const danioDeAtaque = (danioNormal + atacante.ataquePerforante() + objetivo.constanteDeDanioRecibido()) * atacante.multiplicadorDeCritico() * objetivo.multiplicadorDeDanioRecibido()
+		const danioDeAtaque = (danioNormal + atacante.ataquePerforante() + objetivo.constanteDeDanioRecibido()) * objetivo.multiplicadorDeDanioRecibido()
 		
-		// El objetivo Recibe el daño
-		objetivo.recibirAtaqueNormal(danioDeAtaque, atacante)
-		arma.atacoA(danioDeAtaque, objetivo)
+		if(atacante.dioCritico())
+		{
+			// El objetivo Recibe el daño de ataque  potenciado por el critico
+			const danioCritico = danioDeAtaque * atacante.multiplicadorDeCritico()
+			objetivo.recibirAtaqueNormal(danioCritico, atacante)	
+			
+			const critico = new AnimacionEnlazada(0.2, 2, objetivo, "assets/Efectos/Crítico")
+			const tiempo = new EventoSimple(eventos02Segundos, 0.6, { critico.interrumpir() })
+			
+			critico.comenzar()
+			tiempo.comenzar()
+		}
+		else
+		{
+			// El objetivo Recibe el daño de ataque normal
+			objetivo.recibirAtaqueNormal(danioDeAtaque, atacante)
+		}
+		
+		
 	}
 }
 
